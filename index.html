@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>carol.zone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #ffffff;
+      color: #222222;
+    }
+    .page {
+      max-width: 720px;
+      margin: 40px auto 80px auto;
+      padding: 0 16px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    .small {
+      font-size: 12px;
+      color: #777;
+    }
+    .divider {
+      border-top: 1px solid #ddd;
+      margin: 32px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>carol.zone</h1>
+    <p class="small">planetary science &amp; art</p>
+
+    <div class="divider"></div>
+
+    <p>
+      This is my little corner of the internet while I’m finishing my PhD,
+      thinking about other worlds, and making things with my hands.
+    </p>
+
+    <div class="divider"></div>
+    <p class="small">&copy; <span id="year"></span> carol.zone</p>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
