@@ -8,8 +8,8 @@
   <style>
     :root{
       --text: #222222;
-      --fog: rgba(250,232,182,.2);  <!-- was 0.55 --> 
-      --fog2: rgba(216,230,242,.15);  <!-- was 0.4 --> 
+      --fog: rgba(250,232,182,.55);  <!-- was 0.55 --> 
+      --fog2: rgba(216,230,242,.4);  <!-- was 0.4 --> 
       --btn-bg: rgba(250, 250, 250, 0.55);
       --btn-border: rgba(34, 34, 34, 0.25);
     }
@@ -76,9 +76,9 @@
       position: absolute;
       inset: -20%;
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 55%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.30), transparent 70%),
-        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.20), transparent 55%),
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), transparent 55%), <!-- was rgba(255,255,255,0.35)--> 
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.80), transparent 70%), <!-- was rgba(255,255,255,0.30)--> 
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.70), transparent 55%), <!-- was rgba(255,255,255,0.20)--> 
         linear-gradient(0deg, var(--fog), var(--fog2));
       filter: blur(10px);
       opacity: 1;
