@@ -76,14 +76,16 @@
       position: absolute;
       inset: -20%;
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), transparent 55%), <!-- was rgba(255,255,255,0.35)--> 
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.80), transparent 70%), <!-- was rgba(255,255,255,0.30)--> 
-        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.70), transparent 55%), <!-- was rgba(255,255,255,0.20)--> 
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), transparent 55%), 
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.80), transparent 70%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.70), transparent 55%), 
         linear-gradient(0deg, var(--fog), var(--fog2));
       filter: blur(10px);
       opacity: 1;
       animation: drift 14s ease-in-out infinite;
     }
+
+    <!-- was rgba(255,255,255,0.35), was rgba(255,255,255,0.30), was rgba(255,255,255,0.20) --> 
 
     @keyframes drift {
       0%   { transform: translate3d(-2%, -1%, 0) scale(1.02); }
