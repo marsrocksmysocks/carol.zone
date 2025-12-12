@@ -62,30 +62,57 @@
   }
 
   /* Stack on small screens */
-  @media (max-width: 700px){
-  .media-row{ grid-template-columns: 1fr; }
-  }
+    @media (max-width: 700px){
+    .media-row{ grid-template-columns: 1fr; }
+    }
 
   /* Shared styling for image + video */
-  .media-row img,
-  .media-row video{
-  width: 100%;
-  display: block;
-  border-radius: 6px;
-  }
+    .media-row img,
+    .media-row video{
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+    }
 
   /* Aspect ratio variants */
-  .media-row.r45 img,
-  .media-row.r45 video{
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-  }
+    .media-row.r45 img,
+    .media-row.r45 video{
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+  
+    .media-row.r169 img,
+    .media-row.r169 video{
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
 
-  .media-row.r169 img,
-  .media-row.r169 video{
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
+  /* Hover caption from data attribute */
+    .media-row figure{
+    position: relative;
+    margin: 0;
+    }
+  
+    .media-row figcaption{
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 10px 12px;
+      font-size: 12px;
+      line-height: 1.3;
+      color: #fff;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.0)
+      );
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+    }
+
+    .media-row figure:hover figcaption{
+      opacity: 1;
+    }
 
     /* ---------- Intro overlay ---------- */
     .intro {
@@ -187,20 +214,32 @@
     <div class="gallery">
 
       <div class="media-row r169">
-      <img src="images/cozyhorse3.jpg" alt="Cozy Horse 3">
-      <video
-        src="videos/birds_rt10providence_10sec.mov"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto">
-      </video>
+      <figure>
+        <img src="images/cozyhorse3.jpg" alt="Cozy Horse 3">
+        <figcaption>Cozy Horse 3, Oil on paper.</figcaption>
+      </figure>
+      <figure>
+        <video
+          src="videos/birds_rt10providence_10sec.mov"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto">
+        </video>
+          <figcaption> Video taken by Carol of birds on Rt. 10 outside of Providence, RI. </figcaption>
+      </figure>
       </div>
 
     <div class="media-row r45">
-      <img src="images/cozyhorse2-1100.jpg" alt="Cozy Horse 2">
-      <img src="images/carolcamelsahara2.jpeg" alt="Carol drawing a camel carcass in the Sahara.">
+      <figure>
+      <img src="images/cozyhorse2-1100.jpg" alt="Cozy Horse 2"> 
+        <figcaption> Cozy Horse 2, Oil on paper. </figcaption>
+        </figure>
+      <figure>
+      <img src="images/carolcamelsahara2.jpeg" alt="Carol drawing a camel carcass in the Sahara desert.">
+        <figcaption> Carol drawing a camel carcass in the Sahara desert. </figcaption>
+        </figure>
     </div>
 
 
