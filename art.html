@@ -53,7 +53,7 @@
 
     /* Your gallery images */
     /* Two-up media row (image + video) */
-.media-row{
+  .media-row{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
@@ -61,23 +61,23 @@
   margin-bottom: 24px;
   }
 
-/* Stack on small screens */
-@media (max-width: 700px){
+  /* Stack on small screens */
+  @media (max-width: 700px){
   .media-row{ grid-template-columns: 1fr; }
   }
 
-/* Shared styling for image + video */
-.media-row img,
-.media-row video{
+  /* Shared styling for image + video */
+  .media-row img,
+  .media-row video{
   width: 100%;
   display: block;
   border-radius: 6px;
   }
 
-/* Optional: keep both the same visual height */
-.media-row img,
-.media-row video{
-  aspect-ratio: 4 / 5;     /* change to taste, e.g. 1 / 1 or 16 / 9 */
+  /* Optional: keep both the same visual height */
+  .media-row img,
+  .media-row video{
+  aspect-ratio: 16 / 9;     /* change to taste, e.g. 1 / 1 or 16 / 9 or 4 / 5*/
   object-fit: cover;
   }   
 
@@ -182,7 +182,7 @@
 
     <div class="media-row">
     <img src="images/cozyhorse2-1100.jpg" alt="Cozy Horse 2">
-    <img src="images/carolcamelsahara1.jpeg" alt = "Camel 1">
+    <img src="images/carolcamelsahara1.jpeg" alt = "Carol drawing a camel carcass in the Sahara.">
     </div>
 
     <div class="media-row">
