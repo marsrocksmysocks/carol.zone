@@ -247,10 +247,14 @@
     </div>
 
     <p class="small">&copy; <span id="year"></span> Carol Beate Hundal</p>
-    <p class="small">&copy; 20251212+1722</p>
+    <p class="small" 20251212+1722</p>
     
   </div>
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  
   <script>
     const intro = document.getElementById("intro");
     const walkBtn = document.getElementById("walkBtn");
