@@ -74,13 +74,18 @@
   border-radius: 6px;
   }
 
-  /* Optional: keep both the same visual height  
-  *.media-row img,
-  *.media-row video{
-  *aspect-ratio: 16 / 9;     /* change to taste, e.g. 1 / 1 or 16 / 9 or 4 / 5*/
-  *object-fit: cover; 
-  */ 
-  }   
+  /* Aspect ratio variants */
+  .media-row.r45 img,
+  .media-row.r45 video{
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .media-row.r169 img,
+  .media-row.r169 video{
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
 
     /* ---------- Intro overlay ---------- */
     .intro {
@@ -181,22 +186,22 @@
 
     <div class="gallery">
 
-    <div class="media-row">
-    <img src="images/cozyhorse2-1100.jpg" alt="Cozy Horse 2">
-    <img src="images/carolcamelsahara2.jpeg" alt = "Carol drawing a camel carcass in the Sahara.">
+    <div class="media-row r45">
+      <img src="images/cozyhorse2-1100.jpg" alt="Cozy Horse 2">
+      <img src="images/carolcamelsahara2.jpeg" alt="Carol drawing a camel carcass in the Sahara.">
     </div>
 
-    <div class="media-row">
-    <img src="images/cozyhorse3.jpg" alt="Cozy Horse 3">
-    <video
-    src="videos/birds_rt10providence_10sec.mov"
-    autoplay
-    loop
-    muted
-    playsinline
-    preload="auto">
-</video>
-    </div>
+    <div class="media-row r169">
+      <img src="images/cozyhorse3.jpg" alt="Cozy Horse 3">
+      <video
+        src="videos/birds_rt10providence_10sec.mov"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="auto">
+      </video>
+  </div>
 
 </div>
   </div>
