@@ -61,14 +61,14 @@
 
     /* ---------- Intro overlay ---------- */
     .intro {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
 
-    display: grid;
-    place-items: center;
+      display: grid;
+      place-items: center;
 
-    pointer-events: auto;
+      pointer-events: auto;
     }
 
     /* Fog layers */
@@ -91,10 +91,10 @@
       100% { transform: translate3d(-2%, -1%, 0) scale(1.02); }
     }
 
-    /* Button + horse container */
+    /* Button container */
     .intro-content {
-    position: relative;
-    text-align: center;
+      position: relative;
+      text-align: center;
     }
 
     /* Discreet button */
@@ -126,36 +126,11 @@
       transform: translateY(0);
     }
 
-    /* Horse image (initially hidden) */
-    #horse {
-      display: block;
-      width: min(520px, 76vw);
-      height: auto;
-      margin: 18px auto 0 auto;
-      border-radius: 10px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 1600ms ease, transform 1600ms ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    }
-
-    /* When horse is shown */
-    .intro.show-horse #horse{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* Fade out entire intro to reveal page */
     .intro.fade-out{
       opacity: 0;
       transition: opacity 1400ms ease;
       pointer-events: none;
-    }
-
-    /* Optional: smooth page reveal feel */
-    .page{
-      opacity: 1;
-      transition: opacity 900ms ease;
     }
   </style>
 </head>
@@ -166,8 +141,6 @@
     <div class="fog" aria-hidden="true"></div>
     <div class="intro-content">
       <button id="walkBtn" type="button">walk forward</button>
-      <!-- Put your foggy horse image path here -->
-      <img id="horse" alt="Foggy horse" />
     </div>
   </div>
 
@@ -188,15 +161,8 @@
   </div>
 
   <script>
-    // 1) Set your foggy horse image file here (put it in /images/)
-    const horseImageSrc = "images/CarolHundal_CozyHorse2_OilOnPaper_ 2.5x4.25in.png"; // <-- change this
-
     const intro = document.getElementById("intro");
     const walkBtn = document.getElementById("walkBtn");
-    const horse = document.getElementById("horse");
-
-    // Ensure image src is set up-front
-    horse.src = horseImageSrc;
 
     // Reveal button once page is ready
     window.addEventListener("load", () => {
@@ -209,13 +175,9 @@
       walkBtn.style.opacity = "0";
       walkBtn.style.transform = "translateY(6px)";
 
-      // Show the horse
-      intro.classList.add("show-horse");
+      // Small pause (so the click feels acknowledged), then fade out the fog
+      await new Promise(r => setTimeout(r, 500));
 
-      // Hold briefly with the horse visible
-      await new Promise(r => setTimeout(r, 1700));
-
-      // Fade overlay out to reveal page
       intro.classList.add("fade-out");
 
       // Remove overlay from DOM after fade completes
