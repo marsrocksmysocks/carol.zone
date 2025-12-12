@@ -4,50 +4,220 @@
   <meta charset="UTF-8">
   <title>Art — carol.zone</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
+    :root{
+      --text: #222222;
+      --fog: rgba(250,232,182,0.55);
+      --fog2: rgba(216,230,242,0.40);
+      --btn-bg: rgba(250, 250, 250, 0.55);
+      --btn-border: rgba(34, 34, 34, 0.25);
+    }
+
     body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  background: linear-gradient(-45deg, #fae8b6, #f7c9d4, #d8e6f2, #f3f0c7);
-  background-size: 400% 400%;
-  animation: shift 90s ease infinite;
+      background: linear-gradient(-45deg, #fae8b6, #f7c9d4, #d8e6f2, #f3f0c7);
+      background-size: 400% 400%;
+      animation: shift 90s ease infinite;
 
-  color: #222222;
-}
+      color: var(--text);
+    }
+
+    @keyframes shift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .page {
       max-width: 720px;
       margin: 40px auto 80px auto;
       padding: 0 16px;
     }
-    h1 {
+
+    h2 {
       font-size: 24px;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 16px;
+      margin: 0 0 16px 0;
     }
+
     .back {
       font-size: 12px;
       margin-bottom: 20px;
     }
-    img {
+
+    /* Your gallery images */
+    .gallery img {
       width: 25%;
       margin-bottom: 24px;
       border-radius: 6px;
+      display: block;
+    }
+
+    /* ---------- Intro overlay ---------- */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      pointer-events: auto;
+    }
+
+    /* Fog layers */
+    .fog {
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 55%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.30), transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.20), transparent 55%),
+        linear-gradient(0deg, var(--fog), var(--fog2));
+      filter: blur(10px);
+      opacity: 1;
+      animation: drift 14s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%   { transform: translate3d(-2%, -1%, 0) scale(1.02); }
+      50%  { transform: translate3d( 2%,  1%, 0) scale(1.04); }
+      100% { transform: translate3d(-2%, -1%, 0) scale(1.02); }
+    }
+
+    /* Button + horse container */
+    .intro-content{
+      position: relative;
+      text-align: center;
+      padding: 24px;
+    }
+
+    /* Discreet button */
+    #walkBtn{
+      appearance: none;
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: rgba(34,34,34,0.85);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 900ms ease, transform 900ms ease, background 250ms ease;
+    }
+
+    #walkBtn:hover{
+      background: rgba(255,255,255,0.68);
+    }
+
+    /* Fade in button after load */
+    .intro.ready #walkBtn{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Horse image (initially hidden) */
+    #horse {
+      display: block;
+      width: min(520px, 76vw);
+      height: auto;
+      margin: 18px auto 0 auto;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 1600ms ease, transform 1600ms ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    /* When horse is shown */
+    .intro.show-horse #horse{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Fade out entire intro to reveal page */
+    .intro.fade-out{
+      opacity: 0;
+      transition: opacity 1400ms ease;
+      pointer-events: none;
+    }
+
+    /* Optional: smooth page reveal feel */
+    .page{
+      opacity: 1;
+      transition: opacity 900ms ease;
     }
   </style>
 </head>
+
 <body>
+  <!-- Intro overlay -->
+  <div class="intro" id="intro">
+    <div class="fog" aria-hidden="true"></div>
+    <div class="intro-content">
+      <button id="walkBtn" type="button">walk forward</button>
+      <!-- Put your foggy horse image path here -->
+      <img id="horse" alt="Foggy horse" />
+    </div>
+  </div>
+
+  <!-- Page content -->
   <div class="page">
     <p class="back"><a href="index.html">← back to home</a></p>
 
     <h2>art</h2>
 
-    <!-- Add as many images as you want -->
-    <img src="images/CarolHundal_CozyHorse2_OilOnPaper_ 2.5x4.25in.png" alt="Cozy Horse 2">
-    
+    <div class="gallery">
+      <img src="images/CarolHundal_CozyHorse2_OilOnPaper_ 2.5x4.25in.png" alt="Cozy Horse 2">
+      <!-- Add more images here -->
+    </div>
   </div>
+
+  <script>
+    // 1) Set your foggy horse image file here (put it in /images/)
+    const horseImageSrc = "images/CarolHundal_CozyHorse2_OilOnPaper_ 2.5x4.25in.png"; // <-- change this
+
+    const intro = document.getElementById("intro");
+    const walkBtn = document.getElementById("walkBtn");
+    const horse = document.getElementById("horse");
+
+    // Ensure image src is set up-front
+    horse.src = horseImageSrc;
+
+    // Reveal button once page is ready
+    window.addEventListener("load", () => {
+      intro.classList.add("ready");
+    });
+
+    walkBtn.addEventListener("click", async () => {
+      // Disable repeated clicks
+      walkBtn.disabled = true;
+      walkBtn.style.opacity = "0";
+      walkBtn.style.transform = "translateY(6px)";
+
+      // Show the horse
+      intro.classList.add("show-horse");
+
+      // Hold briefly with the horse visible
+      await new Promise(r => setTimeout(r, 1700));
+
+      // Fade overlay out to reveal page
+      intro.classList.add("fade-out");
+
+      // Remove overlay from DOM after fade completes
+      setTimeout(() => {
+        intro.remove();
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
