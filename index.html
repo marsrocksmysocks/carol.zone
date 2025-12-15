@@ -69,6 +69,16 @@
     <p class="small">&copy; <span id="year"></span> </p>
   </div>
 
+  <head>
+
+  <!-- Preload image and video for next page -->
+  <link rel="preload" as="video" href="/videos/birds_rt10providence_10sec.mov" type="video/mp4">
+  <link rel="preload" as="image" href="/images/cozyhorse2-1100.jpg">
+
+  <!-- If you use a webfont, CSS, etc., you can preload those too -->
+  <!-- <link rel="preload" as="style" href="/styles/subpage.css"> -->
+</head>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
